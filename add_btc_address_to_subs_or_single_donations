@@ -1,0 +1,46 @@
+#!/bin/ruby
+
+config_dir = File.expand_path('~/.bitcoin_monthly')
+
+require 'uri'
+
+uri = URI(ARGV.join)
+
+if (uri.scheme != "bitcoin") then
+  zenity_out = `zenity --info --text "Not a bitcoin URI"`
+  abort
+end
+
+if (match = /^([[:alnum:]]{34})(\?(.*))?$/.match(uri.opaque)) then
+  address = match[1]
+  zenity_out = `zenity --info --text "Note: the bitcoin address is not being validated"`
+  if (!(match[3].nil?) and URI.decode_www_form(match[3]).assoc('label').respond_to?("last")) then
+    label = URI.decode_www_form(match[3]).assoc('label').last
+  else
+    label = ""
+  end
+  label = `zenity --entry --entry-text="#{label}" --text "Set label for address: #{address}"`
+else
+  zenity_out = `zenity --info --text "Bitcoin URI invalid"`
+  abort
+end
+
+zenity_out = `zenity --list --radiolist --column="" --column=File --text "Where you want to add the address to?\
+" --height=300 FALSE subscriptions FALSE single_donations TRUE "Cancel Action"`.chomp
+
+if (["single_donations", "subscriptions"].include?zenity_out) then
+  file = "#{config_dir}/#{zenity_out}"
+else
+  zenity_out = `zenity --info --text "Action Cancelled"`
+  abort
+end
+
+if (File.writable?(file)) then
+  zenity_out = `zenity --info --text "Updating #{file}"`
+  open(File.open(file, File::APPEND), mode: "a").write("#{address}     #{label}")
+else
+  zenity_out = `zenity --info --text "Cannot open #{file} for writing"`
+  abort
+end
+
+
