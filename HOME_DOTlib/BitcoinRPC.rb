@@ -1,3 +1,12 @@
+#!/bin/ruby
+
+#
+# Ruby class BitcoinRPC taken from https://en.bitcoin.it/wiki/API_reference_(JSON-RPC)#Ruby
+#
+# CC-BY en.bitcoin.it
+# (according to https://en.bitcoin.it/wiki/Bitcoin.it_Wiki#License)
+#
+
 require 'net/http'
 require 'uri'
 require 'json'
