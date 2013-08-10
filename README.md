@@ -13,7 +13,7 @@ Files
 -----
 
 <dl>
-  <dt>HOME_DOTlib/BitcoinRPC.rb</dt>
+  <dt>HOME_lib/BitcoinRPC.rb</dt>
   <dd>`BitcoinRPC` class taken from:
 
   https://en.bitcoin.it/wiki/API_reference_(JSON-RPC)#Ruby
