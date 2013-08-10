@@ -13,7 +13,9 @@ end
 
 if (match = /^([[:alnum:]]{34})(\?(.*))?$/.match(uri.opaque)) then
   address = match[1]
-  zenity_out = `zenity --info --text "Note: the bitcoin address is not being validated"`
+  zenity_out = `zenity --info --text "Note: the bitcoin address is not being validated.\n\
+You can safely ignore this warning.\n\
+Addresses are validated by bitcoin_monthly_contribute.rb before creating transactions."`
   if (!(match[3].nil?) and URI.decode_www_form(match[3]).assoc('label').respond_to?("last")) then
     label = URI.decode_www_form(match[3]).assoc('label').last
   else
