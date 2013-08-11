@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 
 config_dir = File.expand_path('~/.bitcoin_monthly')
 

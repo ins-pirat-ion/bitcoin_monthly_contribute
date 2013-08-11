@@ -7,7 +7,7 @@ Inspired by the awesome `Flattr` idea.
 
 Thanks to the scriptability of `bitcoin` network `bitcoin_monthly_contribute` doesn't require any service provider solution. All you need is couple of simple free software scripts on your box.
 
-Collection of bitcoin addresses can be done easily with `add_btc_address_to_subs_or_single_donations` which works well with donation buttons like http://coinwidget.com/ or https://bitcoinwidget.appspot.com/ or simply bitcoin: URL defined in https://en.bitcoin.it/wiki/BIP_0021
+Collection of bitcoin addresses can be done easily with `add_btc_address_to_subs_or_single_donations.rb` which works well with donation buttons like http://coinwidget.com/ or https://bitcoinwidget.appspot.com/ or simply bitcoin: URL defined in https://en.bitcoin.it/wiki/BIP_0021
 
 Files
 -----
@@ -35,7 +35,7 @@ Files
   * `Monthly_amount_in_currency`
   * Currency code
   * `Usd_in_currency` exchange rate. There's example of fetching the actual value from web ticker.</dd>
-  <dt>add_btc_address_to_subs_or_single_donations</dt>
+  <dt>add_btc_address_to_subs_or_single_donations.rb</dt>
   <dd>Script that can be invoked from your browser  as an application taking bitcoin: URL defined in https://en.bitcoin.it/wiki/BIP_0021 which will ask you if you want to add the addres (and label it) to `subscriptions` or `single_donations` file or cancel.
 
   Employs `zenity`.</dd>

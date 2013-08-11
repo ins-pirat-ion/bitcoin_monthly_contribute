@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/ruby
 
 #
 # Ruby class BitcoinRPC taken from https://en.bitcoin.it/wiki/API_reference_(JSON-RPC)#Ruby
