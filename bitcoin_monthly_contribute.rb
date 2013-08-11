@@ -70,7 +70,7 @@ single_donations = []
 puts "\nValidating addresses in #{config_dir}/subscriptions ...\n\n"
 
 File.open("#{config_dir}/subscriptions").each_line do |line|
-  if (match = /^([[:alnum:]]{34})\s+(.*)$/.match(line.chomp)) then
+  if (match = /^([1-9a-zA-Z]{27,})\s+(.*)$/.match(line.chomp)) then
     if (client.validateaddress(match[1])["isvalid"]) then
       subscriptions.push([match[1], match[2]])
     else
@@ -84,7 +84,7 @@ end
 puts "\nValidating addresses in #{config_dir}/single_donations ...\n\n"
 
 File.open("#{config_dir}/single_donations").each_line do |line|
-  if (match = /^([[:alnum:]]{34})\s+(.*)$/.match(line.chomp)) then
+  if (match = /^([1-9a-zA-Z]{27,})\s+(.*)$/.match(line.chomp)) then
     if (client.validateaddress(match[1])["isvalid"]) then
       single_donations.push([match[1], match[2]])
     else
@@ -136,13 +136,13 @@ puts '================================================================'
 
 puts "\nSubscriptions:\n\n"
 
-subscriptions.each {|line| puts line.join("\t\t\t")}
+subscriptions.each {|line| puts line[0] + " " * (48 - line[0].length) + line[1]}
 
 puts '================================================================'
 
 puts "\nSingle donations:\n\n"
 
-single_donations.each {|line| puts line.join("\t\t\t")}
+single_donations.each {|line| puts line[0] + " " * (48 - line[0].length) + line[1]}
 
 puts '================================================================'
 

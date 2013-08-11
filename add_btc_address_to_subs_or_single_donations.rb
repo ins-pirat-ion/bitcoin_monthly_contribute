@@ -11,7 +11,7 @@ if (uri.scheme != "bitcoin") then
   abort
 end
 
-if (match = /^([[:alnum:]]{34})(\?(.*))?$/.match(uri.opaque)) then
+if (match = /^([1-9a-zA-Z]{27,})(\?(.*))?$/.match(uri.opaque)) then
   address = match[1]
   zenity_out = `zenity --info --text "Note: the bitcoin address is not being validated.\n\
 You can safely ignore this warning.\n\
@@ -39,7 +39,7 @@ end
 
 if (File.writable?(file)) then
   zenity_out = `zenity --info --text "Updating #{file}"`
-  open(File.open(file, File::APPEND), mode: "a").write("#{address}     #{label}")
+  open(File.open(file, File::APPEND), mode: "a").write(address + " " * (48 - address.length) + label)
 else
   zenity_out = `zenity --info --text "Cannot open #{file} for writing"`
   abort
