@@ -22,7 +22,7 @@ Files
 
   But to whom should I give credit? OK, let's try https://en.bitcoin.it :).
 
-  All the other files are Public Domain (or `WTFPL`, `Copyheart`, `CC0` if you prefer). However, licenses and corrupted copy monopolies will die anyway so it doesn't matter.</dd>
+  All the other files are Public Domain (or `Unlicense`, `WTFPL`, `Copyheart`, `CC0` if you prefer). However, licenses and corrupted copy monopolies will die anyway so it doesn't matter.</dd>
   <dt>bitcoin_monthly_contribute.rb</dt>
   <dd> The main script.
 
