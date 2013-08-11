@@ -8,6 +8,7 @@ Prerequisities
 * encrypted and regularly backed up wallet protected by password
 * set `rpcuser` and `rpcpassword` in `~/.bitcoin/bitcoin.conf`, please see https://en.bitcoin.it/wiki/Running_Bitcoin
 * `bitcoin_monthly_contribute.rb` requires `bitcoind` or `bitcoin-qt -server` running. It is not required for collecting BTC addresses with `add_btc_address_to_subs_or_single_donations.rb`
+* installed `zenity` (used for GTK dialogs spawned by `add_btc_address_to_subs_or_single_donations.rb`)
 
 Installation
 ------------
