@@ -39,3 +39,16 @@ Files
   <dd>Script that can be invoked from your browser  as an application taking bitcoin: URL defined in https://en.bitcoin.it/wiki/BIP_0021 which will ask you if you want to add the addres (and label it) to `subscriptions` or `single_donations` file or cancel.
 
   Employs `zenity`.</dd>
+
+Donations
+---------
+
+I'm happily employed and I don't expect donations in order to maintain these simple scripts.
+
+However I've already obtained some unexpected love thanks to awesome Flattr--GitHub integration: https://flattr.com/thing/1748778/ins-pirat-ionbitcoinmonthlycontribute-on-GitHub so I decided to offer BTC donation option, too so I (and you) have comparison, how different methods work.
+
+The BTC address for donations is bitcoin:1dprQf6srGtsNhgP82CT8QWUpUrMtXjiH
+
+I don't know how to present it as clickable URL because [GFM](https://help.github.com/articles/github-flavored-markdown) doesn't support arbitrary HTML code insertion. I'll present clickable URL/widget later on external site.
+
+I'll spread every donation made to this "project" either via Flattr or Bitcoin back to the Free Sofware, Free Culture creators or privacy, human rights and related activists/groups. If I'm not lazy, I'll post transparency reports here or on my [blog](https://diasp.org/u/fill_io).
