@@ -49,6 +49,6 @@ However I've already obtained some unexpected love thanks to awesome Flattr--Git
 
 The BTC address for donations is bitcoin:1dprQf6srGtsNhgP82CT8QWUpUrMtXjiH
 
-I don't know how to present it as clickable URL because [GFM](https://help.github.com/articles/github-flavored-markdown) doesn't support arbitrary HTML code insertion. I'll present clickable URL/widget later on external site.
+I don't know how to present it as clickable URL here because [GFM](https://help.github.com/articles/github-flavored-markdown) doesn't support arbitrary HTML code insertion. You can click on it on my ugly outdated [bookmarks site](http://lillek.wz.cz/).
 
 I'll spread every donation made to this "project" either via Flattr or Bitcoin back to the Free Sofware, Free Culture creators or privacy, human rights and related activists/groups. If I'm not lazy, I'll post transparency reports here or on my [blog](https://diasp.org/u/fill_io).
