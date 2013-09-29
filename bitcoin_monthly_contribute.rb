@@ -14,14 +14,14 @@
 #
 # Uses BitcoinRPC ruby class fetched from https://en.bitcoin.it/wiki/API_reference_(JSON-RPC)#Ruby
 # 
-# Requires ~/.bitcoin_monthly/bitcoin_monthly_contribute.conf.rb in the form
+# Requires ~/.bitcoin_monthly/bitcoin_monthly_contribute.conf.rb which defines following variables:
 #
-# module  BitcoinMonthly
-#   Monthly_amount_in_currency = 500
-#   Currency = "CZK"
-#   Usd_in_currency = `lynx --dump http://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt\
-#     |grep USD|sed 's/^.*|//;s/,/./'`
-# end
+# Monthly_amount_in_currency (Int)
+# Currency (String)
+# Btc_in_usd_ticker_cmd (String - shell command)
+# Btc_in_usd = `#{btc_in_usd_ticker_cmd}`
+# Usd_in_currency_ticker_cmd (String - shell command)
+# Usd_in_currency = `#{Usd_in_currency_ticker_cmd}`
 #
 # Requires subscriptions and single_donations files in ~/.bitcoin_monthly with records like
 #
@@ -95,19 +95,16 @@ File.open("#{config_dir}/single_donations").each_line do |line|
   end
 end
 
-btc_in_usd = `lynx --dump http://data.mtgox.com/api/1/BTCUSD/ticker\
-  |sed 's/^.*buy":{"value":"//;s/".*$//'`
-
 begin
-  btc_in_usd = Float(btc_in_usd)
+  btc_in_usd = Float(BitcoinMonthly::Btc_in_usd)
 rescue
-  abort "\nproblem fetching http://data.mtgox.com/api/1/BTCUSD/ticker\n"
+  abort "\nproblem getting btc_in_usd ticker via command:\n #{BitcoinMonthly::Btc_in_usd_ticker_cmd}\n"
 end
 
 begin
   usd_in_currency = Float(BitcoinMonthly::Usd_in_currency)
 rescue
-  abort "\nproblem fetching http://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt\n"
+  abort "\nproblem getting usd_in_currency ticker via command:\n #{BitcoinMonthly::Usd_in_currency_ticker_cmd}\n"
 end
 
 items_no = subscriptions.size + single_donations.size
@@ -175,7 +172,7 @@ else
   abort "\nError setting transaction fee\n"
 end
 
-client.walletpassphrase(walletpassphrase, 10)
+client.walletpassphrase(walletpassphrase, 10 + 10 * items_no)
 
 subscriptions.each {|line|
   puts "Sending #{btc_per_item} to #{line.last}. Transaction: #{client.sendtoaddress(line.first, btc_per_item)}\n"
@@ -184,3 +181,7 @@ subscriptions.each {|line|
 single_donations.each {|line|
   puts "Sending #{btc_per_item} to #{line.last}. Transaction: #{client.sendtoaddress(line.first, btc_per_item)}\n"
 }
+
+puts "Locking the wallet\n"
+client.walletlock()
+

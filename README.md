@@ -34,7 +34,8 @@ Files
   <dd>Example of configuration file. Defines:
   * `Monthly_amount_in_currency`
   * Currency code
-  * `Usd_in_currency` exchange rate. There's example of fetching the actual value from web ticker.</dd>
+  * `Usd_in_currency` exchange rate, `Usd_in_currency_ticker_cmd` shell command to obtain it
+  * `Btc_in_usd` exchange rate, `Btc_in_usd_ticker_cmd` shell command to obtain it</dd>
   <dt>add_btc_address_to_subs_or_single_donations.rb</dt>
   <dd>Script that can be invoked from your browser  as an application taking bitcoin: URL defined in https://en.bitcoin.it/wiki/BIP_0021 which will ask you if you want to add the addres (and label it) to `subscriptions` or `single_donations` file or cancel.
 
