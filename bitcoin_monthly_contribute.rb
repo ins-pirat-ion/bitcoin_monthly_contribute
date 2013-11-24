@@ -111,14 +111,17 @@ items_no = subscriptions.size + single_donations.size
 
 btc_in_currency = btc_in_usd * usd_in_currency
 monthly_amount_in_btc = monthly_amount_in_currency / btc_in_currency
+monthly_amount_in_usd = monthly_amount_in_btc * btc_in_usd
 btc_per_item = (monthly_amount_in_btc / items_no).round(8)
 currency_per_item = btc_per_item * btc_in_currency
+usd_per_item = btc_per_item * btc_in_usd
 
 puts '================================================================'
 
 
-printf("MONTHLY_AMOUNT_IN_CURRENCY:   %18.8f #{BitcoinMonthly::Currency}\n", monthly_amount_in_currency)
 printf("MONTHLY_AMOUNT_IN_BTC:        %18.8f\n", monthly_amount_in_btc)
+printf("MONTHLY_AMOUNT_IN_CURRENCY:   %18.8f #{BitcoinMonthly::Currency}\n", monthly_amount_in_currency)
+printf("MONTHLY_AMOUNT_IN_USD:        %18.8f\n", monthly_amount_in_usd)
 
 puts '================================================================'
 
@@ -146,6 +149,7 @@ puts '================================================================'
 printf("ITEMS_NO:                     %18.8f\n", items_no)
 printf("BTC_PER_ITEM:                 %18.8f\n", btc_per_item)
 printf("CURRENCY_PER_ITEM:            %18.8f #{BitcoinMonthly::Currency}\n", currency_per_item)
+printf("USD_PER_ITEM:                 %18.8f\n", usd_per_item)
 
 puts '================================================================'
 
