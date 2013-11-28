@@ -4,7 +4,7 @@ module  BitcoinMonthly
   Currency = "CZK"
 
   Btc_in_usd_ticker_cmd = 'curl https://api.coindesk.com/v1/bpi/currentprice/USD.json\
-    |sed \'s/^.*"rate":"//;s/".*$//\''
+    |sed \'s/^.*"rate":"//;s/".*$//;s/,//\''
   Btc_in_usd = `#{Btc_in_usd_ticker_cmd}`
 
   Usd_in_currency_ticker_cmd = "curl http://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt\
