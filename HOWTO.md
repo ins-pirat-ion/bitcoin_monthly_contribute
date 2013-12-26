@@ -15,7 +15,7 @@ Installation
 
 * create ~/.bitcoin_monthly directory
 * create ~/.bitcoin_monthly/bitcoin_monthly_contribute.conf.rb according to example https://github.com/ins-pirat-ion/bitcoin_monthly_contribute/blob/master/HOME_DOTbitcoin_monthly/bitcoin_monthly_contribute.conf.rb
-  You have to define `Monthly_amount_in_currency` (how much do you want to spread monthly in your preferred currency), `Currency` (how do you call your currency, arbitrary string, that will affect only output messages), `Usd_in_currency` (exchange rate between your currency and USD e.g. 1 if USD is your currency. There is automatic fetching of CZK/USD exchange rate showed in the example) values.
+  You have to define `Monthly_amount_in_currency` (how much do you want to spread monthly in your preferred currency), `Currency` (how do you call your currency, arbitrary string, that will affect only output messages), `Account` (label of account from which you want to send the contribution. Should have sufficient funds), `Usd_in_currency` (exchange rate between your currency and USD e.g. 1 if USD is your currency. There is automatic fetching of CZK/USD exchange rate showed in the example) values.
 * maintain list of BTC addresses you want to contribute every month in `~/.bitcoin_monthly/subscriptions`, see example https://github.com/ins-pirat-ion/bitcoin_monthly_contribute/blob/master/HOME_DOTbitcoin_monthly/subscriptions
 * maintain list of BTC addresses you want to contribute only this month in `~/.bitcoin_monthly/single_donations`, the format is the same. You may wish to emty this file after successful invocation of `bitcoin_monthly_contribute.rb`
 * create (if not already present) `~/lib` directory

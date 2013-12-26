@@ -66,6 +66,7 @@ client = BitcoinRPC.new("http://#{rpcuser}:#{rpcpassword}@127.0.0.1:8332")
 
 subscriptions = []
 single_donations = []
+payments = Hash.new
 
 puts "\nValidating addresses in #{config_dir}/subscriptions ...\n\n"
 
@@ -153,10 +154,17 @@ printf("USD_PER_ITEM:                 %18.8f\n", usd_per_item)
 
 puts '================================================================'
 
-if ((balance = client.getbalance) < monthly_amount_in_btc) then
-  abort "\nBalance #{balance} < monthly_amount #{monthly_amount_in_btc} BTC\n"
+total_balance = client.getbalance
+account_balance = client.getbalance(BitcoinMonthly::Account)
+min_balance = [total_balance, account_balance].min
+
+puts "\nYour total balance is #{total_balance}"
+puts "\nYour account '#{BitcoinMonthly::Account}' balance is #{account_balance}\n"
+
+if (min_balance < monthly_amount_in_btc) then
+  abort "\nBalance #{min_balance} < monthly_amount #{monthly_amount_in_btc} BTC\n"
 else
-  puts "\nYour balance is #{balance} and you're going to spend #{items_no * btc_per_item} BTC\n\n\
+  puts "\nYou're going to spend #{items_no * btc_per_item} BTC\n\n\
         \nDo you want to proceed?(yes/[whatever else])\n"
 end
 
@@ -176,15 +184,19 @@ else
   abort "\nError setting transaction fee\n"
 end
 
-client.walletpassphrase(walletpassphrase, 10 + 10 * items_no)
+# unlock wallet for 60 seconds
+client.walletpassphrase(walletpassphrase, 60)
 
 subscriptions.each {|line|
-  puts "Sending #{btc_per_item} to #{line.last}. Transaction: #{client.sendtoaddress(line.first, btc_per_item)}\n"
+  payments[line.first] = btc_per_item 
 }
 
 single_donations.each {|line|
-  puts "Sending #{btc_per_item} to #{line.last}. Transaction: #{client.sendtoaddress(line.first, btc_per_item)}\n"
+  payments[line.first] = btc_per_item 
 }
+
+puts "BitcoinRPC request:\n\n#{JSON.pretty_unparse({ 'method' => "sendmany", 'params' => [ "", payments ], 'id' => 'jsonrpc' })}"
+puts "Transaction: #{client.sendmany(BitcoinMonthly::Account, payments)}\n"
 
 puts "Locking the wallet\n"
 client.walletlock()

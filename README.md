@@ -34,6 +34,7 @@ Files
   <dd>Example of configuration file. Defines:
   * `Monthly_amount_in_currency`
   * Currency code
+  * Label of account from which you want to send the contribution. Should have sufficient funds
   * `Usd_in_currency` exchange rate, `Usd_in_currency_ticker_cmd` shell command to obtain it
   * `Btc_in_usd` exchange rate, `Btc_in_usd_ticker_cmd` shell command to obtain it</dd>
   <dt>add_btc_address_to_subs_or_single_donations.rb</dt>
