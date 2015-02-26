@@ -7,7 +7,9 @@ require 'uri'
 uri = URI(ARGV.join)
 
 if (uri.scheme != "bitcoin") then
-  zenity_out = `zenity --info --text "Not a bitcoin URI"`
+  zenity_out = `zenity --info --text "Not a bitcoin URI.\n\n\
+Refer to https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki#Examples\n\n\
+eg.  bitcoin:1dprQf6srGtsNhgP82CT8QWUpUrMtXjiH?label=bitcoin_monthly_contribute"`
   abort
 end
 
