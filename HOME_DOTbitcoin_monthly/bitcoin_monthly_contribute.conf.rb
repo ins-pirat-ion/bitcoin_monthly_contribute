@@ -5,7 +5,7 @@ module  BitcoinMonthly
 
   Account = "Contribute"
 
-  Btc_in_usd_ticker_cmd = 'curl https://api.coindesk.com/v1/bpi/currentprice/USD.json\
+  Btc_in_usd_ticker_cmd = 'curl -k https://api.coindesk.com/v1/bpi/currentprice/USD.json\
     |sed \'s/^.*"rate":"//;s/".*$//;s/,//\''
   Btc_in_usd = `#{Btc_in_usd_ticker_cmd}`
 
